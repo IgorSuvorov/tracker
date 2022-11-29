@@ -116,4 +116,17 @@ public class TrackerTest {
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName()).isEqualTo("replaced item");
     }
+
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String[] answers = {
+                String.valueOf(item.getId())
+        };
+        StartUI.deleteItem(new StubInput(answers), tracker);
+        Item deleted = tracker.findById(item.getId());
+        assertThat(deleted).isNull();
+    }
 }
