@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public interface UserAction {
+public interface UserAction {
+    String name();
+
+    boolean execute(Input input, Tracker tracker);
 }
