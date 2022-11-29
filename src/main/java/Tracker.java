@@ -23,8 +23,7 @@ public class Tracker {
     }
 
     public Item findById(int id) {
-        int index = indexOf(id);
-        return index != -1 ? items[index] : null;
+        return indexOf(id) != -1 ? items[indexOf(id)] : null;
     }
 
     public Item[] findAll() {
@@ -45,28 +44,21 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        int index = indexOf(id);
-        boolean valid = index != -1;
+        boolean valid = indexOf(id) != -1;
         if (valid) {
             item.setId(id);
-            items[index] = item;
-            return true;
+            items[indexOf(id)] = item;
         }
-        return false;
+        return valid;
     }
 
     public boolean delete(int id) {
-        int index = indexOf(id);
-        boolean valid = index != -1;
+        boolean valid = indexOf(id) != -1;
         if (valid) {
-            int start = index + 1;
-            int length = size - index - 1;
-            int destPos = index;
-            System.arraycopy(items, start, items, destPos, length);
+            System.arraycopy(items, indexOf(id) + 1, items, indexOf(id),  size - indexOf(id) - 1);
             items[size - 1] = null;
             size--;
-            return true;
         }
-        return false;
+        return valid;
     }
 }
