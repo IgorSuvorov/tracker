@@ -1,4 +1,9 @@
 public class FindAllAction implements UserAction {
+    private final Output out;
+
+    public FindAllAction(Output out) {
+        this.out = out;
+    }
     @Override
     public String name() {
         return "Find all items";
@@ -6,15 +11,15 @@ public class FindAllAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.println("=== Showing all items ===" + System.lineSeparator());
+        out.println("=== Showing all items ===" + System.lineSeparator());
         tracker.findAll();
         Item[] items = tracker.findAll();
         if (items.length > 0) {
             for (Item item : items) {
-                System.out.println(item);
+                out.println(item);
             }
         } else {
-            System.out.println("There are no items in the storage yet");
+            out.println("There are no items in the storage yet");
         }
         return true;
     }

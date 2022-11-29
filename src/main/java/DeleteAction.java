@@ -1,4 +1,9 @@
 public class DeleteAction implements UserAction {
+    private final Output out;
+
+    public DeleteAction(Output out) {
+        this.out = out;
+    }
     @Override
     public String name() {
         return "Delete an item";
@@ -6,13 +11,13 @@ public class DeleteAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.println("=== Delete an item ===" + System.lineSeparator());
+        out.println("=== Delete an item ===" + System.lineSeparator());
         int id = input.askInt("Enter id: ");
         tracker.delete(id);
         if (tracker.delete(id)) {
-            System.out.println("Item was deleted successfully.");
+            out.println("Item was deleted successfully.");
         } else {
-            System.out.println("Error.");
+            out.println("Error.");
         }
         return true;
     }
