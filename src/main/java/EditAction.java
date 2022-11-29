@@ -1,4 +1,4 @@
-public class EditAction implements UserAction{
+public class EditAction implements UserAction {
     @Override
     public String name() {
         return "Edit an item";

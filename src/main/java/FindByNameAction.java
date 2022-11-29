@@ -1,4 +1,4 @@
-public class FindByNameAction implements UserAction{
+public class FindByNameAction implements UserAction {
     @Override
     public String name() {
         return "Find an item by name";
