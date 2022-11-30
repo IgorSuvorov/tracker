@@ -13,7 +13,6 @@ public class DeleteAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Delete an item ===" + System.lineSeparator());
         int id = input.askInt("Enter id: ");
-        tracker.delete(id);
         if (tracker.delete(id)) {
             out.println("Item was deleted successfully.");
         } else {
