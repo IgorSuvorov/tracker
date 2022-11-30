@@ -51,23 +51,23 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenReplaceItemIsSuccessful() {
+    public void whenEditItemIsSuccessful() {
         Tracker tracker = new Tracker();
         Item item = new Item("Bug");
         tracker.add(item);
         int id = item.getId();
         Item updatedItem = new Item("Bug with description");
-        tracker.replace(id, updatedItem);
+        tracker.edit(id, updatedItem);
         assertThat(tracker.findById(id).getName()).isEqualTo("Bug with description");
     }
 
     @Test
-    public void whenReplaceItemIsNotSuccessful() {
+    public void whenEditItemIsNotSuccessful() {
         Tracker tracker = new Tracker();
         Item item = new Item("Bug");
         tracker.add(item);
         Item updateItem = new Item("Bug with description");
-        boolean result = tracker.replace(1000, updateItem);
+        boolean result = tracker.edit(1000, updateItem);
         assertThat(tracker.findById(item.getId()).getName()).isEqualTo("Bug");
         assertThat(result).isFalse();
     }
@@ -108,7 +108,7 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenReplaceItem() {
+    public void whenEditItem() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("New item name"));
         String replacedName = "Replaced item";
@@ -152,9 +152,120 @@ public class TrackerTest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString()).isEqualTo(
-                "Menu." + System.lineSeparator()
+                "Menu:" + System.lineSeparator()
                         + "0. Exit the application" + System.lineSeparator()
                         + "=== Exit the application ===" + System.lineSeparator()
+        );
+    }
+
+    @Test
+    public void whenEditItemTestOutputIsSuccessful() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        String replaceName = "New Test Name";
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), replaceName, "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new EditAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                        "Menu:" + ln
+                        + "0. Edit an item" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Edit an item ===" + ln + ln
+                        + "Item was edited successfully." + ln
+                        + "Menu:" + ln
+                        + "0. Edit an item" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Exit the application ===" + ln
+        );
+    }
+
+    @Test
+    public void whenFindAllTestOutputIsSuccessful() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Input in = new StubInput(
+                new String[]{"0", "1"}
+        );
+        Item one = tracker.add(new Item("test1"));
+        Item two = tracker.add(new Item("test2"));
+        UserAction[] actions = new UserAction[]{
+                new FindAllAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu:" + ln
+                        + "0. Find all items" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Showing all items ===" + ln + ln
+                        + one + ln
+                        + two + ln
+                        + "Menu:" + ln
+                        + "0. Find all items" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Exit the application ===" + ln
+        );
+    }
+
+    @Test
+    public void whenFindByIdTestOutputIsSuccessful() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Input in = new StubInput(
+                new String[] {"0", "1", "1"}
+        );
+        Item one = tracker.add(new Item("test1"));
+        UserAction[] actions = new UserAction[]{
+                new FindByIdAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu:" + ln
+                        + "0. Find an item by id" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Find an item by ID ===" + ln + ln
+                        + one + ln
+                        + "Menu:" + ln
+                        + "0. Find an item by id" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Exit the application ===" + ln
+        );
+    }
+
+    @Test
+    public void whenFindByNameTestOutputIsSuccessful() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Input in = new StubInput(
+                new String[] {"0", "test1", "1"}
+        );
+        Item one = tracker.add(new Item("test1"));
+        UserAction[] actions = new UserAction[]{
+                new FindByNameAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu:" + ln
+                        + "0. Find an item by name" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Find an item by name ===" + ln + ln
+                        + one + ln
+                        + "Menu:" + ln
+                        + "0. Find an item by name" + ln
+                        + "1. Exit the application" + ln
+                        + "=== Exit the application ===" + ln
         );
     }
 }

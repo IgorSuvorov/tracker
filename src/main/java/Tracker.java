@@ -44,7 +44,7 @@ public class Tracker {
         return Arrays.copyOf(rsl, count);
     }
 
-    public boolean replace(int id, Item item) {
+    public boolean edit(int id, Item item) {
         int index = indexOf(id);
         boolean valid = index != -1;
         if (valid) {
