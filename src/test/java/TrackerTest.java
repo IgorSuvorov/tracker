@@ -219,10 +219,10 @@ public class TrackerTest {
     public void whenFindByIdTestOutputIsSuccessful() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        Input in = new StubInput(
-                new String[] {"0", "1", "1"}
-        );
         Item one = tracker.add(new Item("test1"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), "1"}
+        );
         UserAction[] actions = new UserAction[]{
                 new FindByIdAction(out),
                 new ExitAction(out)
