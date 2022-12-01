@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FactTest {
     @Test
+    public void whenNIsThreeThenSix() {
+        assertThat(new Fact().calc(3)).isEqualTo(6);
+    }
+
+    @Test
     public void whenNIsLessThanZeroThenException() {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
