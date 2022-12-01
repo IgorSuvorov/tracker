@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -44,7 +46,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{"
+        return "model.Item{"
                 +
                 "id=" + id
                 +

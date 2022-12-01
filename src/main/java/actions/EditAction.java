@@ -1,9 +1,16 @@
+package actions;
+
+import input.Input;
+import model.Item;
+import output.Output;
+
 public class EditAction implements UserAction {
     private final Output out;
 
     public EditAction(Output out) {
         this.out = out;
     }
+
     @Override
     public String name() {
         return "Edit an item";

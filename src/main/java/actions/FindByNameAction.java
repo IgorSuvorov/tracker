@@ -1,9 +1,16 @@
+package actions;
+
+import input.Input;
+import model.Item;
+import output.Output;
+
 public class FindByNameAction implements UserAction {
     private final Output out;
 
     public FindByNameAction(Output out) {
         this.out = out;
     }
+
     @Override
     public String name() {
         return "Find an item by name";
@@ -19,7 +26,7 @@ public class FindByNameAction implements UserAction {
                 out.println(item);
             }
         } else {
-            out.println("Item(s) with this name: " + name + " was not found.");
+            out.println("model.Item(s) with this name: " + name + " was not found.");
         }
         return true;
     }

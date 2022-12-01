@@ -14,8 +14,7 @@ public class PasswordValidator {
         if (password.equals(password.toUpperCase())) {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
-        int digit = 0;
-        int specialChar = 0;
+        int digit = 0, specialChar = 0;
         char[] array = password.toCharArray();
         for (char x : array) {
             if (Character.isDigit(x)) {

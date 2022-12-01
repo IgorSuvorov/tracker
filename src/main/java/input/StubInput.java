@@ -1,3 +1,7 @@
+package input;
+
+import input.Input;
+
 public class StubInput implements Input {
     private String[] answers;
     private int position = 0;

@@ -1,9 +1,16 @@
+package actions;
+
+import input.Input;
+import model.Item;
+import output.Output;
+
 public class FindByIdAction implements UserAction {
     private final Output out;
 
     public FindByIdAction(Output out) {
         this.out = out;
     }
+
     @Override
     public String name() {
         return "Find an item by id";

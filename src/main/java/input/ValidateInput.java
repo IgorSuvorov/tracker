@@ -1,3 +1,8 @@
+package input;
+
+import input.Input;
+import output.Output;
+
 public class ValidateInput implements Input {
     private final Output out;
     private final Input in;

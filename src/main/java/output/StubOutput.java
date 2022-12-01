@@ -1,3 +1,7 @@
+package output;
+
+import output.Output;
+
 public class StubOutput implements Output {
     private final StringBuilder buffer = new StringBuilder();
 
