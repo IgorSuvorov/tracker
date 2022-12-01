@@ -1,4 +1,12 @@
+import actions.*;
+import input.Input;
+import input.StubInput;
+import input.ValidateInput;
+import model.Item;
 import org.junit.jupiter.api.Test;
+import output.Output;
+import output.StubOutput;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrackerTest {
@@ -95,7 +103,7 @@ public class TrackerTest {
     @Test
     public void whenCreateItem() {
         Input in = new StubInput(
-                new String[] {"0", "Item name", "1"}
+                new String[] {"0", "model.Item name", "1"}
         );
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -104,7 +112,7 @@ public class TrackerTest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName()).isEqualTo("Item name");
+        assertThat(tracker.findAll()[0].getName()).isEqualTo("model.Item name");
     }
 
     @Test
@@ -178,7 +186,7 @@ public class TrackerTest {
                         + "0. Edit an item" + ln
                         + "1. Exit the application" + ln
                         + "=== Edit an item ===" + ln + ln
-                        + "Item was edited successfully." + ln
+                        + "model.Item was edited successfully." + ln
                         + "Menu:" + ln
                         + "0. Edit an item" + ln
                         + "1. Exit the application" + ln

@@ -1,3 +1,12 @@
+package start;
+
+import actions.*;
+import input.ConsoleInput;
+import input.Input;
+import input.ValidateInput;
+import output.ConsoleOutput;
+import output.Output;
+
 public class StartUI {
     private final Output out;
 
