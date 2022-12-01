@@ -86,7 +86,7 @@ class PasswordValidatorTest {
                 IllegalArgumentException.class,
                 () -> PasswordValidator.validate(password)
         );
-        String expected = "Password should contain at least one special symbol";
+        String expected = "Password should contain at least one special character";
         assertThat(exception.getMessage()).isEqualTo(expected);
     }
 
