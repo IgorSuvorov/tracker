@@ -3,6 +3,8 @@ package start;
 import actions.Tracker;
 import model.Item;
 
+import java.util.List;
+
 public class SingleTracker {
     private static SingleTracker instance = null;
 
@@ -22,7 +24,7 @@ public class SingleTracker {
         return tracker.add(item);
     }
 
-    public Item[] findAll() {
+    public List<Item> findAll() {
         return tracker.findAll();
     }
 
@@ -30,7 +32,7 @@ public class SingleTracker {
         return tracker.findById(id);
     }
 
-    public Item[] findByName(String name) {
+    public List<Item> findByName(String name) {
         return tracker.findByName(name);
     }
 
