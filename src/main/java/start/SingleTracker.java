@@ -5,6 +5,10 @@ import model.Item;
 
 import java.util.List;
 
+/*
+fixed
+ */
+
 public class SingleTracker {
     private static SingleTracker instance = null;
 
